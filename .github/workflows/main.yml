@@ -1,0 +1,20 @@
+on: push
+
+env:
+  clientId: 00001111-aaaa-2222-bbbb-3333cccc4444
+  tenant: your-tenant.onmicrosoft.com
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: 'Upload TrustFrameworkBase Policy'
+      uses: azure-ad-b2c/deploy-trustframework-policy@v3
+      with:
+        folder: "./Policies"
+        files: "TrustFrameworkBase.xml,TrustFrameworkLocalization.xml,TrustFrameworkExtensions.xml,SignUpOrSignin.xml"
+        tenant: ${{ dmjb2c.onmicrosoft.com }}
+        clientId: ${{ 23dfadd9-5148-425d-8c3e-3bfe852aaa74 }}
+        clientSecret: ${{ secrets.clientSecret }}
